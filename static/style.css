@@ -76,6 +76,7 @@ button {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin-top:100px;
 }
 
 button:hover {
@@ -140,3 +141,4 @@ footer {
         width: 100%;
     }
 }
+
