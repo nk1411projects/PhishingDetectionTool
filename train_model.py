@@ -42,4 +42,4 @@ if not os.path.exists(models_dir):
 joblib.dump(model, os.path.join(models_dir, "phishing_model.pkl"))
 joblib.dump(vectorizer, os.path.join(models_dir, "vectorizer.pkl"))
 
-print("✅ Model training complete! Model and vectorizer saved successfully.")
+print("Model training complete. Model and vectorizer saved successfully.")

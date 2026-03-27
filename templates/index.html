@@ -1,21 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phishing Detection Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>🔍 Phishing Detection Tool</h1>
-        <form method="post">
-            <input type="text" name="url" placeholder="Enter URL" required>
-            <button type="submit">Check</button>
-        </form>
-        {% if result %}
-            <div class="result {% if result == 'Phishing' %}danger{% else %}safe{% endif %}">
-                <h3>Result: {{ result }}</h3>
-            </div>
-        {% endif %}
+    <div class="page-shell">
+        <div class="ambient ambient-one"></div>
+        <div class="ambient ambient-two"></div>
+
+        <main class="container">
+            <section class="panel app-card">
+                <div class="hero compact">
+                    <p class="eyebrow">Phishing Detection Tool</p>
+                    <h1>Check a URL</h1>
+                    <p class="subtitle">Paste a link to see whether it looks phishing or legitimate.</p>
+                </div>
+
+                <form method="post" class="scan-form">
+                    <label for="url">URL to inspect</label>
+                    <div class="input-row">
+                        <input
+                            id="url"
+                            type="text"
+                            name="url"
+                            placeholder="https://example.com/login"
+                            value="{{ submitted_url }}"
+                            autocomplete="off"
+                            required
+                        >
+                        <button type="submit">Check</button>
+                    </div>
+                </form>
+
+                {% if result %}
+                    <div class="result {% if result == 'Phishing' %}danger{% else %}safe{% endif %}">
+                        <div class="result-badge">
+                            {% if result == 'Phishing' %}Phishing{% else %}Legitimate{% endif %}
+                        </div>
+                        <h3>Result: {{ result }}</h3>
+                        {% if submitted_url %}
+                            <code>{{ submitted_url }}</code>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </section>
+        </main>
     </div>
 </body>
 </html>

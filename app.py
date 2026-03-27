@@ -15,10 +15,12 @@ def check_phishing(url):
 @app.route("/", methods=["GET", "POST"])
 def home():
     result = None
+    submitted_url = ""
     if request.method == "POST":
-        url = request.form["url"]
-        result = check_phishing(url)
-    return render_template("index.html", result=result)
+        submitted_url = request.form["url"].strip()
+        if submitted_url:
+            result = check_phishing(submitted_url)
+    return render_template("index.html", result=result, submitted_url=submitted_url)
 
 if __name__ == "__main__":
     app.run(debug=True)
